@@ -15,6 +15,8 @@
 		638F31CA2CA19A86006F43C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 638F31C92CA19A86006F43C4 /* Assets.xcassets */; };
 		638F31CD2CA19A86006F43C4 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 638F31CC2CA19A86006F43C4 /* Base */; };
 		638F31D52CA1B24E006F43C4 /* ActivityLogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638F31D42CA1B24E006F43C4 /* ActivityLogItem.swift */; };
+		639AE2792CA42703001FBA26 /* HistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639AE2782CA42703001FBA26 /* HistoryVC.swift */; };
+		639AE27B2CA43100001FBA26 /* StatisticsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639AE27A2CA43100001FBA26 /* StatisticsVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		638F31CC2CA19A86006F43C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		638F31CE2CA19A86006F43C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		638F31D42CA1B24E006F43C4 /* ActivityLogItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogItem.swift; sourceTree = "<group>"; };
+		639AE2782CA42703001FBA26 /* HistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryVC.swift; sourceTree = "<group>"; };
+		639AE27A2CA43100001FBA26 /* StatisticsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +67,9 @@
 				638F31BD2CA19A84006F43C4 /* AppDelegate.swift */,
 				638F31BF2CA19A84006F43C4 /* SceneDelegate.swift */,
 				638F31C12CA19A84006F43C4 /* MainVC.swift */,
+				639AE2782CA42703001FBA26 /* HistoryVC.swift */,
 				638F31D42CA1B24E006F43C4 /* ActivityLogItem.swift */,
+				639AE27A2CA43100001FBA26 /* StatisticsVC.swift */,
 				638F31C32CA19A84006F43C4 /* Main.storyboard */,
 				638F31C92CA19A86006F43C4 /* Assets.xcassets */,
 				638F31CB2CA19A86006F43C4 /* LaunchScreen.storyboard */,
@@ -148,6 +154,8 @@
 				638F31D52CA1B24E006F43C4 /* ActivityLogItem.swift in Sources */,
 				638F31C22CA19A84006F43C4 /* MainVC.swift in Sources */,
 				638F31BE2CA19A84006F43C4 /* AppDelegate.swift in Sources */,
+				639AE27B2CA43100001FBA26 /* StatisticsVC.swift in Sources */,
+				639AE2792CA42703001FBA26 /* HistoryVC.swift in Sources */,
 				638F31C02CA19A84006F43C4 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

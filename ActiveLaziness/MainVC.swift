@@ -38,12 +38,13 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
         typeOfActivityLabel.text = ""
     }
 
-    //BUTTONS STUFF
+    //MARK: BUTTONS STUFF
     @IBAction func saveButtonTapped(_ sender: UIButton) {
         let newActivityInstance = ActivityLogItem(activityType: pickedActivity, activityDuration: timeToSave, activityDate: Date())
         arrayOfActivities.append(newActivityInstance)
         typeOfActivityLabel.text = ""
         updateTimerLabel()
+        
     }
     
     @IBAction func addActivityButtonTapped(_ sender: UIBarButtonItem) {
@@ -84,7 +85,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
         activityTime = 0
     }
     
-    //PICKER STUFF
+    //MARK: PICKER STUFF
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -101,7 +102,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
         pickedActivity = activities[row]
     }
     
-    //TIMER STUFF
+    //MARK: TIMER STUFF
     @objc func fireTimer(){
         activityTime += 1
         updateTimerLabel()
