@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import CoreData
 
 class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @IBOutlet var activityPicker: UIPickerView!
     
@@ -32,6 +35,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
   
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         self.activityPicker.delegate = self
         self.activityPicker.dataSource = self
         updateTimerLabel()
@@ -40,11 +44,15 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     //MARK: BUTTONS STUFF
     @IBAction func saveButtonTapped(_ sender: UIButton) {
-        let newActivityInstance = ActivityLogItem(activityType: pickedActivity, activityDuration: timeToSave, activityDate: Date())
+        stopButtonTapped(saveButton)
+        let newActivityInstance = ActivityLogItem(context: context)
+        newActivityInstance.activityType = pickedActivity
+        newActivityInstance.activityDuration = Int32(timeToSave)
+        newActivityInstance.activityDate = Date()
         arrayOfActivities.append(newActivityInstance)
+        saveItems()
         typeOfActivityLabel.text = ""
         updateTimerLabel()
-        
     }
     
     @IBAction func addActivityButtonTapped(_ sender: UIBarButtonItem) {
@@ -55,10 +63,12 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
         let action = UIAlertAction(title: "Add", style: .default) { (action) in
             
             if textField.text != nil && textField.text != "" {
+                
                 let newActivity = textField.text!
                 self.activities.append(newActivity)
                 print(self.activities)
                 self.activityPicker.reloadAllComponents()
+                self.saveItems()
             }
         }
         
@@ -114,6 +124,27 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
             let seconds = activityTime % 60
             
             timerLabel.text = String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+    }
+    
+    
+    //MARK: CORE DATA STUFF
+    
+    func saveItems() {
+        do {
+            try context.save()
+            print(context)
+        } catch {
+         print("Error \(error)")
+        }
+    }
+    
+    func loadItems() {
+        let request: NSFetchRequest<ActivityLogItem> = ActivityLogItem.fetchRequest()
+        do{
+            arrayOfActivities = try context.fetch(request)
+        } catch {
+            print("Error fetching context \(error)")
+        }
     }
 }
 

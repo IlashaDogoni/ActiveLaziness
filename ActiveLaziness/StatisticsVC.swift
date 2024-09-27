@@ -6,26 +6,36 @@
 //
 
 import UIKit
+import CoreData
 
 class StatisticsVC: UIViewController {
-    
-    var activitiesSample = [ActivityLogItem(activityType: "Swimming", activityDuration: 600, activityDate: Date()),                             ActivityLogItem(activityType: "Kissing", activityDuration: 1000, activityDate: Date() + 100000),
-                            ActivityLogItem(activityType: "Swimming", activityDuration: 600, activityDate: Date() - 100000),
-                            ActivityLogItem(activityType: "Kissing", activityDuration: 1000, activityDate: Date() + 200000),
-                            ActivityLogItem(activityType: "Swimming", activityDuration: 600, activityDate: Date()),
-                            ActivityLogItem(activityType: "Swimming", activityDuration: 1600, activityDate: Date())]
+  
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
+    var arrayOfActivities = [ActivityLogItem]()
 
     @IBOutlet var firstStatLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadItems()
         let mostTimeConsumingActivity = findMostTimeConsumingActivity()
-        firstStatLabel.text = "Your most time consuming activity of all is \(mostTimeConsumingActivity!)"
+        firstStatLabel.text = "Your most time consuming activity of all is \(mostTimeConsumingActivity ?? "none")"
     }
     
     func findMostTimeConsumingActivity() -> String? {
-            guard !activitiesSample.isEmpty else { return nil }
-            let resultActivity = activitiesSample.max(by: { $0.activityDuration < $1.activityDuration })
+            guard !arrayOfActivities.isEmpty else { return "none" }
+            let resultActivity = arrayOfActivities.max(by: { $0.activityDuration < $1.activityDuration })
             return resultActivity?.activityType
         }
+    
+    //MARK: Core Data
+    func loadItems() {
+        let request: NSFetchRequest<ActivityLogItem> = ActivityLogItem.fetchRequest()
+        do{
+            arrayOfActivities = try context.fetch(request)
+        } catch {
+            print("Error fetching context \(error)")
+        }
+    }
 }
