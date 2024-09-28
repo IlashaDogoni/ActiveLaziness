@@ -38,8 +38,10 @@ class HistoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
             if editingStyle == .delete {
+                context.delete(arrayOfActivities[indexPath.row])
                 arrayOfActivities.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .fade)
+                saveItems()
             }
         }
     
@@ -59,6 +61,14 @@ class HistoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     //MARK: Core Data
+    func saveItems() {
+        do {
+            try context.save()
+        } catch {
+         print("Error \(error)")
+        }
+    }
+    
     func loadItems() {
         let request: NSFetchRequest<ActivityLogItem> = ActivityLogItem.fetchRequest()
         do{

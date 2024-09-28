@@ -132,7 +132,6 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     func saveItems() {
         do {
             try context.save()
-            print(context)
         } catch {
          print("Error \(error)")
         }
