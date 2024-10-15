@@ -44,10 +44,10 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     //MARK: BUTTONS STUFF
     @IBAction func saveButtonTapped(_ sender: UIButton) {
-        stopButtonTapped(saveButton)
         let newActivityInstance = ActivityLogItem(context: context)
-        newActivityInstance.activityType = pickedActivity
         newActivityInstance.activityDuration = Int32(timeToSave)
+        stopButtonTapped(saveButton)
+        newActivityInstance.activityType = pickedActivity
         newActivityInstance.activityDate = Date()
         arrayOfActivities.append(newActivityInstance)
         saveItems()
@@ -130,6 +130,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     //MARK: CORE DATA STUFF
     
     func saveItems() {
+        print(arrayOfActivities)
         do {
             try context.save()
         } catch {

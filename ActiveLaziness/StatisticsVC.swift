@@ -20,7 +20,7 @@ class StatisticsVC: UIViewController {
         super.viewDidLoad()
         loadItems()
         let mostTimeConsumingActivity = findMostTimeConsumingActivity()
-        firstStatLabel.text = "Your most time consuming activity of all is \(mostTimeConsumingActivity ?? "none")"
+        firstStatLabel.text = "Your longest activity furation is \(mostTimeConsumingActivity ?? "none")"
     }
     
     func findMostTimeConsumingActivity() -> String? {
